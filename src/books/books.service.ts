@@ -28,4 +28,15 @@ export class BooksService {
       resolve(this.books);
     });
   }
+
+  deleteBook(bookId): Promise<any> {
+    const id = Number(bookId);
+    return new Promise((resolve) => {
+      const index = this.books.findIndex((book) => book.id === id);
+      if (index === -1) {
+        throw new HttpException('Book does not exist!', 404);
+      }
+      resolve(this.books);
+    });
+  }
 }
