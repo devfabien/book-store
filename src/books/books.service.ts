@@ -29,14 +29,14 @@ export class BooksService {
     });
   }
 
-  deleteBook(bookId): Promise<any> {
-    const id = Number(bookId);
+  deleteBook(id): Promise<any> {
+    const bookId = Number(id);
     return new Promise((resolve) => {
-      const index = this.books.findIndex((book) => book.id === id);
+      const index = this.books.findIndex((book) => book.id === bookId);
       if (index === -1) {
         throw new HttpException('Book does not exist!', 404);
       }
-      this.books.splice(1, index);
+      this.books.splice(index, 1);
       resolve(this.books);
     });
   }
